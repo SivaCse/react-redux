@@ -1,0 +1,5 @@
+// Nesse caso ele possui um retorno implicito
+() => ( <h1> Teste </h1> )
+
+// Nesse caso ele é uma função
+{ return <h1> Teste </h1> }
