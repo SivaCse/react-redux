@@ -1,5 +1,5 @@
-const webpack = require('webpack');
-const extractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
     entry: './src/index.jsx',
@@ -9,7 +9,7 @@ module.exports = {
     },
     devServer: {
         port: 8080,
-        content: './public'
+        contentBase: './public',
     },
     resolve: {
         extensions: ['', '.js', '.jsx'],
@@ -17,12 +17,12 @@ module.exports = {
             modules: __dirname + '/node_modules'
         }
     },
-    plugins: [
-        new extractTextPlugin('app.css')
+    plugins: [ 
+        new ExtractTextPlugin('app.css')
     ],
     module: {
         loaders: [{
-            tests: /.js[x]?$/,
+            test: /.js[x]?$/,
             loader: 'babel-loader',
             exclude: /node_modules/,
             query: {
@@ -31,11 +31,10 @@ module.exports = {
             }
         }, {
             test: /\.css$/,
-            loader: extractTextPlugin.extract('style-loader', 'css-loader')
+            loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
         }, {
             test: /\.woff|.woff2|.ttf|.eot|.svg*.*$/,
             loader: 'file'
         }]
     }
-
 }
